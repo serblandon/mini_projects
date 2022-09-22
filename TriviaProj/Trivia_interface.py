@@ -96,42 +96,46 @@ def button_correct():
 
     button_submit = Button(root, text="Submit", command=button_submitt)
     button_submit.pack()'''
+i = 0
 
-def button_yes_act(i):
+def button_yes_act():
     global result
+    global i
+    global e1
 
-    label_question = Label(root, text=listt[i]["question"])
+
+    label_question = Label(root, text=listt[options[i]]["question"])
     label_question.pack()
-    label_possanswers = Label(root, text=listt[i]["possanswers"])
+    label_possanswers = Label(root, text=listt[options[i]]["possanswers"])
     label_possanswers.pack()
     label_ques = Label(root, text="Your answer is:")
     label_ques.pack()
     e1 = Entry(root)
     e1.pack()
-    if e1.get() == listt[i]["answer"]:
-        result += 1
+    if i < len(options) - 1:
+        i += 1
+        if e1.get() == listt[options[i]]["answer"]:
+            result += 1
+        button_submit = Button(root, text="Submit", command=button_yes_act)
+        button_submit.pack()
+    else:
+        if e1.get() == listt[options[i]]["answer"]:
+            result += 1
+        button_submittt = Button(root, text="Submit", command=button_submitt)
+        button_submittt.pack()
 
 
-def function():
-    options = random.sample(range(len(listt)), 3)
-    for i in options:
-        button_yes_act(i)
-    button_submit = Button(root, text="Submit", command=button_submitt)
-    button_submit.pack()
-
-
-button_yes = Button(root, text="Yes", font=50, command=function)
-button_yes.pack()
-
-button_no = Button(root, text="No", font=1, command=button_no_act)
-button_no.pack()
-
+options = random.sample(range(len(listt)), 3)
 
 label_text1 = Label(root, text="Let's begin...\n", font=6)
 label_text1.pack()
 
 
+button_yes = Button(root, text="Yes", font=50, command=button_yes_act)
+button_yes.pack()
 
+button_no = Button(root, text="No", font=1, command=button_no_act)
+button_no.pack()
 
 
 root.mainloop()
