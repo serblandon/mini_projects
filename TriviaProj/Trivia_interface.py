@@ -56,6 +56,8 @@ result = 0
 
 root = Tk()
 
+root.title("CapitalsGame")
+
 mylabel1 = Label(root,
                  text="Instructions: In order to get your answer validated you need to press the 'Check' button first and then 'Next"
                       ""
